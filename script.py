@@ -5,7 +5,7 @@ import scipy
 # setting the number of nodes 
 nodes = 1000
 # setting the probability that a pair if have an edge
-p = 1/10
+p = 1/40
 
 network_matrix = []
 
@@ -29,11 +29,11 @@ for i in range(len(network_matrix)):
                 network_matrix[j][i] = 1
  
 
-ug_random_network = Graph(scipy.sparse.lil_matrix(network_matrix),directed=False)
+ug_random_network = Graph(scipy.sparse.lil_matrix(network_matrix), directed=False)
 
 
 # saving as an edge list
-filepath = "edge-list.tsv"
+filepath = "outputs/edge-list.tsv"
 
 # itereating to every pair combination once
 with open(filepath, 'w') as f:
@@ -46,8 +46,7 @@ with open(filepath, 'w') as f:
 
 
 
-# saving as a metis file
-filepath = "network-ug.metis"
+filepath = "outputs/network.metis"
 
 
 with open(filepath, 'w') as f:
@@ -68,8 +67,7 @@ with open(filepath, 'w') as f:
         # joing the list values separated by a space and writting on the file
         f.write(" ".join(neighboors))
 
-
 # saving as a grampml file
-path_file = "network.grapml"
+path_file = "outputs/network.grapml"
 
 ug_random_network.save(path_file, fmt="graphml")
